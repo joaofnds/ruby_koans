@@ -13,7 +13,18 @@
 # and
 #   about_triangle_project_2.rb
 #
+def triangle?(a, b, c)
+  return false unless [a,b,c].all?(&:positive?)
+
+  x, y, z = [a, b, c].sort
+  return false if z >= (x + y)
+
+  true
+end
+
 def triangle(a, b, c)
+  raise TriangleError, 'invalid triangle' unless triangle?(a, b, c)
+
   case
   when a == b && b == c
     :equilateral
